@@ -13,19 +13,23 @@ router.route('/').get((req,res) => {
 
 router.route('/add').post((req,res) => {
   const username = req.body.username;
-  const description = req.body.description;
+  const mealType = req.body.mealType;
+  const foodEaten = req.body.foodEaten;
+  const bodyAffect = req.body.bodyAffect;
   const date = Date.parse(req.body.date);
 
   const newMeal = new Meal({
     username,
-    description,
+    mealType,
+    foodEaten,
+    bodyAffect,
     date
   });
 
+  //saving
   newMeal.save()
     .then(() => res.json('Meal added'))
     .catch(err => res.status(400).json("Error: " + err));
-
 });
 
 
@@ -45,14 +49,16 @@ router.route('/:id').delete((req,res) => {
 });
 
 
+
 //update a meal 
 router.route('/update/:id').post((req,res) => {
-
   //reassinging the meal values with those of new request
   Meal.findById(req.params.id)
     .then(meal => {
       meal.username = req.body.username;
-      meal.description = req.body.description;
+      meal.mealType = req.body.mealType;
+      meal.foodEaten = req.body.foodEaten;
+      meal.bodyAffect = req.body.bodyAffect;
       meal.date = Date.parse(req.body.date);
 
       meal.save()

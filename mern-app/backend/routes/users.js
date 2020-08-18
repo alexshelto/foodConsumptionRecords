@@ -19,6 +19,7 @@ router.route('/').get((req, res) => {
 });
 
 router.route('/add').post((req, res) => {
+  console.log("call to localhost:5000/users/add")
   const username = req.body.username;
   const newUser = new User({username}); //creating new instance of user with the username 
 

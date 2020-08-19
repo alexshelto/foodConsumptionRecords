@@ -16,6 +16,7 @@ router.route('/add').post((req,res) => {
   const mealType = req.body.mealType;
   const foodEaten = req.body.foodEaten;
   const bodyAffect = req.body.bodyAffect;
+  const time = req.body.time;
   const date = Date.parse(req.body.date);
 
   const newMeal = new Meal({
@@ -23,6 +24,7 @@ router.route('/add').post((req,res) => {
     mealType,
     foodEaten,
     bodyAffect,
+    time,
     date
   });
 
@@ -60,6 +62,7 @@ router.route('/update/:id').post((req,res) => {
       meal.mealType = req.body.mealType;
       meal.foodEaten = req.body.foodEaten;
       meal.bodyAffect = req.body.bodyAffect;
+      meal.time = req.body.time;
       meal.date = Date.parse(req.body.date);
 
       meal.save()

@@ -35,6 +35,8 @@ const Meal = props => (
     <td>{props.meal.mealType}</td>
     <td>{props.meal.foodEaten}</td>
     <td>{props.meal.bodyAffect}</td>
+    <td>{props.meal.time}</td>
+
     <td>{props.meal.date.substring(0,10)}</td>
     <td>
     <Link to={"/edit/"+props.meal._id}>edit</Link> | <a href="#" onClick={() => { props.deleteMeal(props.meal._id) }}>delete</a>
@@ -87,6 +89,7 @@ export default class mealsList extends Component {
                <th>Meal Type</th>
                <th>Food Ate</th>
                <th>How it made me feel</th>
+               <th>Time</th>
                <th>Date</th>
                <th>Actions</th>
             </tr>

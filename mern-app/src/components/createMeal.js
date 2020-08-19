@@ -14,6 +14,7 @@ export default class CreateMeal extends Component {
     this.onChangeUsername = this.onChangeUsername.bind(this);
     this.onChangeMealType = this.onChangeMealType.bind(this);
     this.onChangeFoodEaten = this.onChangeFoodEaten.bind(this);
+    this.onChangeTime = this.onChangeTime.bind(this);
     this.onChangeBodyAffect = this.onChangeBodyAffect.bind(this);
     this.onchangeDate = this.onchangeDate.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
@@ -24,9 +25,10 @@ export default class CreateMeal extends Component {
         mealType : '',
         foodEaten : [],
         bodyAffect: '',
+        time: '',
         date: new Date(),
         users: [],
-        types: ['Breakfast', 'Lunch', 'Dinner', 'Snack', 'Desert']
+        types: ['Breakfast', 'Lunch', 'Dinner', 'Snack', 'Dessert', 'Drink', 'latenight snack']
       }
     }
 
@@ -58,6 +60,10 @@ export default class CreateMeal extends Component {
     this.setState({bodyAffect: e.target.value});
   }
 
+  onChangeTime(e){
+    this.setState({time: e.target.value});
+  }
+
   onchangeDate(date){
     this.setState({date: date});
     }
@@ -70,6 +76,7 @@ export default class CreateMeal extends Component {
       mealType: this.state.mealType,
       foodEaten: this.state.foodEaten,
       bodyAffect: this.state.bodyAffect,
+      time: this.state.time,
       date: this.state.date
     }
     console.log(meal);
@@ -139,6 +146,16 @@ export default class CreateMeal extends Component {
                     className="form-control"
                     value={this.state.bodyAffect}
                     onChange={this.onChangeBodyAffect}
+                    />
+              </div>
+
+              <div className="form-group"> 
+                <label>Time: 12hr am/pm</label>
+                <input  type="text"
+                    required
+                    className="form-control"
+                    value={this.state.time}
+                    onChange={this.onChangeTime}
                     />
               </div>
               

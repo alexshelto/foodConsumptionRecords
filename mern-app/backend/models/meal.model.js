@@ -7,6 +7,7 @@ const mealSchema = new Schema({
     mealType: {type: String, required: true},
     foodEaten: [{type: String, required: true}],
     bodyAffect: {type: String, required: false},
+    time: {type: String, required: false},
     date : {type: Date, required: true}
 }, {
     timestamps: true,

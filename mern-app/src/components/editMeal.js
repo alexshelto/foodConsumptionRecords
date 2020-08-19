@@ -31,29 +31,32 @@ export default class CreateMeal extends Component {
       }
     }
 
-  componentDidMount() {
-    //gets id directly from url
-    axios.get('https://localhost:5000/meals/' + this.props.match.params.id)
-      .then(response => {
-        this.setState({
-          username: response.data.username,
-          mealType: response.data.mealType,
-          foodEaten: response.data.foodEaten,
-          date: new Date(response.data.date)
+    componentDidMount() {
+      axios.get('http://localhost:5000/meals/' + this.props.match.params.id)
+        .then(response => {
+          this.setState({
+            username: response.data.username,
+            mealType: response.data.mealType,
+            foodEaten: response.data.foodEaten,
+            bodyAffect: response.data.bodyAffect,
+            data: new Date(response.data.date)
+          })
         })
+        .catch(error => console.log(error));
+
+        //Grabbing users and putting them in this.state.users
+        axios.get('http://localhost:5000/users/').then(response => {
+        if (response.data.length > 0) {
+          this.setState({
+            users: response.data.map(user => user.username)
+          })
+        }
       })
-      .catch(err => console.log(err));
+    .catch(error => console.log(error));
+    }
 
 
-    axios.get('http://localhost:5000/users/').then(response => {
-      if (response.data.length > 0) {
-        this.setState({
-          users: response.data.map(user => user.username)
-        })
-      }
-    })
-    .catch(err => console.log('Error: ' + err));
-  }
+
 
   onChangeUsername(e){
     this.setState({username: e.target.value});
@@ -76,7 +79,7 @@ export default class CreateMeal extends Component {
     }
 
   onSubmit(e){
-    e.preventDefault(); //not to behave like normal onSubmit
+    e.preventDefault(); //not to behave like normal onSubmi
     const meal = {
       username: this.state.username,
       mealType: this.state.mealType,
@@ -87,8 +90,8 @@ export default class CreateMeal extends Component {
     console.log(meal);
 
     //sending the POST request
-    axios.post('http://localhost:5000/meals/update'+this.props.match.params.id, meal).then(res => {
-      console.log(res.data); //response message from server 
+    axios.post('http://localhost:5000/meals/update/'+this.props.match.params.id, meal)
+      .then(res => { console.log(res.data); //response message from server 
     })
 
     window.location = '/'; //sends user to homepage

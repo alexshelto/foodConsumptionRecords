@@ -52,6 +52,7 @@ router.route('/:id').delete((req,res) => {
 
 //update a meal 
 router.route('/update/:id').post((req,res) => {
+  console.log('Recieved a POST request for "/update/ID" ');
   //reassinging the meal values with those of new request
   Meal.findById(req.params.id)
     .then(meal => {
